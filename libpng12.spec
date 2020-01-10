@@ -1,7 +1,7 @@
 Summary: Old version of libpng, needed to run old binaries
 Name: libpng12
 Version: 1.2.50
-Release: 3%{?dist}
+Release: 6%{?dist}
 License: zlib
 Group: System Environment/Libraries
 URL: http://www.libpng.org/pub/png/
@@ -15,6 +15,7 @@ Source: ftp://ftp.simplesystems.org/pub/png/src/libpng-%{version}.tar.bz2
 
 Patch0: libpng12-multilib.patch
 Patch1: libpng12-pngconf.patch
+Patch2: libpng12-CVE-2013-6954.patch
 
 BuildRequires: zlib-devel, pkgconfig
 
@@ -40,6 +41,7 @@ for developing programs using libpng12.
 
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure
@@ -73,6 +75,16 @@ rm -rf $RPM_BUILD_ROOT%{_mandir}/man5/*
 %{_mandir}/man3/*
 
 %changelog
+* Wed Jan 29 2014 Petr Hracek <phracek@redhat.com> - 1.2.50-6
+- Adding patch CVE-2013-6954
+- Resolves: #1056864
+
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.2.50-5
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.2.50-4
+- Mass rebuild 2013-12-27
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1.2.50-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
