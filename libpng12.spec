@@ -1,7 +1,7 @@
 Summary: Old version of libpng, needed to run old binaries
 Name: libpng12
 Version: 1.2.50
-Release: 6%{?dist}
+Release: 7%{?dist}
 License: zlib
 Group: System Environment/Libraries
 URL: http://www.libpng.org/pub/png/
@@ -16,6 +16,8 @@ Source: ftp://ftp.simplesystems.org/pub/png/src/libpng-%{version}.tar.bz2
 Patch0: libpng12-multilib.patch
 Patch1: libpng12-pngconf.patch
 Patch2: libpng12-CVE-2013-6954.patch
+Patch3: libpng12-CVE-2015-7981.patch
+Patch4: libpng12-CVE-2015-8126.patch
 
 BuildRequires: zlib-devel, pkgconfig
 
@@ -42,6 +44,8 @@ for developing programs using libpng12.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 %configure
@@ -75,6 +79,10 @@ rm -rf $RPM_BUILD_ROOT%{_mandir}/man5/*
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 23 2015 Petr Hracek <phracek@redhat.com> - 1.2.50-7
+- Security fix for CVE-2015-7981 and CVE-2015-8126
+- Resolves: #1283576
+
 * Wed Jan 29 2014 Petr Hracek <phracek@redhat.com> - 1.2.50-6
 - Adding patch CVE-2013-6954
 - Resolves: #1056864
